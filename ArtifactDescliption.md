@@ -15,7 +15,25 @@
 
 なお、Formなしだと正常に動作する模様.
 
-[Formなしの場合](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
+例えば、下記のプログラム(main.pyとする)を評価手順の手法の通りに実行すると、
+
+```
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+```
+
+次のような画面が出力される。
+
+![image](https://github.com/user-attachments/assets/41df2a3b-cd0d-455d-94d5-0c8922bcda1f)
+
+[こちら](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
+のページを確認すると正常に動作していると考えられる。
 
 ## クイックスタート
 
