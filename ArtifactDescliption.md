@@ -8,11 +8,13 @@
   + [詳細はここ](https://developer.mozilla.org/ja/docs/Web/HTTP/MIME_types)
 
 以下、問題点を具体的に説明.
+
 一例として、評価手順の通りに実行すると、[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)で次のような画面が出力される。
 
 ![image](https://github.com/user-attachments/assets/4a67f3d6-1fce-4cae-ab81-30537f7e97f3)
 
 なお、Formなしだと正常に動作する模様.
+
 [Formなしの場合](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
 
 ## クイックスタート
