@@ -3,6 +3,7 @@
 ## 概要:{FastAPIのバグ修正}
 * FastAPIとはPython3.6以降でAPIを構築するためのWebフレームワーク.
   + [詳細](https://fastapi.tiangolo.com/ja/)
+  + [元リポジトリはこちら](https://github.com/fastapi/fastapi)
 * [現状のfastapiではmultipart/form-dataをうまく扱えていない](https://github.com/fastapi/fastapi/issues/10999).
 * multipart/form-dataは複数の種類のデータを一度に扱える形式で、主な利用シーンはHTMLフォーム。特にファイルアップロードでよく利用される。
   + [詳細はここ](https://developer.mozilla.org/ja/docs/Web/HTTP/MIME_types)
@@ -35,6 +36,180 @@ async def root():
 [こちら](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
 のページを確認すると正常に動作していると考えられる。
 
+以上から、Formに関する部分を修正する必要がある。
+
+改変対象はは以下の部分になると考えられる。
+
+[改変元](https://github.com/fastapi/fastapi/blob/master/fastapi/params.py)
+
+```
+class Form(Body):
+    def __init__(
+        self,
+        default: Any = Undefined,
+        *,
+        default_factory: Union[Callable[[], Any], None] = _Unset,
+        annotation: Optional[Any] = None,
+        media_type: str = "application/x-www-form-urlencoded",
+        alias: Optional[str] = None,
+        alias_priority: Union[int, None] = _Unset,
+        # TODO: update when deprecating Pydantic v1, import these types
+        # validation_alias: str | AliasPath | AliasChoices | None
+        validation_alias: Union[str, None] = None,
+        serialization_alias: Union[str, None] = None,
+        title: Optional[str] = None,
+        description: Optional[str] = None,
+        gt: Optional[float] = None,
+        ge: Optional[float] = None,
+        lt: Optional[float] = None,
+        le: Optional[float] = None,
+        min_length: Optional[int] = None,
+        max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
+        discriminator: Union[str, None] = None,
+        strict: Union[bool, None] = _Unset,
+        multiple_of: Union[float, None] = _Unset,
+        allow_inf_nan: Union[bool, None] = _Unset,
+        max_digits: Union[int, None] = _Unset,
+        decimal_places: Union[int, None] = _Unset,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = _Unset,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
+        include_in_schema: bool = True,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
+        **extra: Any,
+    ):
+        super().__init__(
+            default=default,
+            default_factory=default_factory,
+            annotation=annotation,
+            media_type=media_type,
+            alias=alias,
+            alias_priority=alias_priority,
+            validation_alias=validation_alias,
+            serialization_alias=serialization_alias,
+            title=title,
+            description=description,
+            gt=gt,
+            ge=ge,
+            lt=lt,
+            le=le,
+            min_length=min_length,
+            max_length=max_length,
+            pattern=pattern,
+            regex=regex,
+            discriminator=discriminator,
+            strict=strict,
+            multiple_of=multiple_of,
+            allow_inf_nan=allow_inf_nan,
+            max_digits=max_digits,
+            decimal_places=decimal_places,
+            deprecated=deprecated,
+            example=example,
+            examples=examples,
+            openapi_examples=openapi_examples,
+            include_in_schema=include_in_schema,
+            json_schema_extra=json_schema_extra,
+            **extra,
+        )
+
+
+class File(Form):
+    def __init__(
+        self,
+        default: Any = Undefined,
+        *,
+        default_factory: Union[Callable[[], Any], None] = _Unset,
+        annotation: Optional[Any] = None,
+        media_type: str = "multipart/form-data",
+        alias: Optional[str] = None,
+        alias_priority: Union[int, None] = _Unset,
+        # TODO: update when deprecating Pydantic v1, import these types
+        # validation_alias: str | AliasPath | AliasChoices | None
+        validation_alias: Union[str, None] = None,
+        serialization_alias: Union[str, None] = None,
+        title: Optional[str] = None,
+        description: Optional[str] = None,
+        gt: Optional[float] = None,
+        ge: Optional[float] = None,
+        lt: Optional[float] = None,
+        le: Optional[float] = None,
+        min_length: Optional[int] = None,
+        max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
+        regex: Annotated[
+            Optional[str],
+            deprecated(
+                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+            ),
+        ] = None,
+        discriminator: Union[str, None] = None,
+        strict: Union[bool, None] = _Unset,
+        multiple_of: Union[float, None] = _Unset,
+        allow_inf_nan: Union[bool, None] = _Unset,
+        max_digits: Union[int, None] = _Unset,
+        decimal_places: Union[int, None] = _Unset,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = _Unset,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
+        include_in_schema: bool = True,
+        json_schema_extra: Union[Dict[str, Any], None] = None,
+        **extra: Any,
+    ):
+        super().__init__(
+            default=default,
+            default_factory=default_factory,
+            annotation=annotation,
+            media_type=media_type,
+            alias=alias,
+            alias_priority=alias_priority,
+            validation_alias=validation_alias,
+            serialization_alias=serialization_alias,
+            title=title,
+            description=description,
+            gt=gt,
+            ge=ge,
+            lt=lt,
+            le=le,
+            min_length=min_length,
+            max_length=max_length,
+            pattern=pattern,
+            regex=regex,
+            discriminator=discriminator,
+            strict=strict,
+            multiple_of=multiple_of,
+            allow_inf_nan=allow_inf_nan,
+            max_digits=max_digits,
+            decimal_places=decimal_places,
+            deprecated=deprecated,
+            example=example,
+            examples=examples,
+            openapi_examples=openapi_examples,
+            include_in_schema=include_in_schema,
+            json_schema_extra=json_schema_extra,
+            **extra,
+        )
+```
 ## クイックスタート
 
 Dockerイメージは以下のようにしてpullしてrunする.
