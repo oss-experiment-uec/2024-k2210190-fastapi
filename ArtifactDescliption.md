@@ -38,9 +38,9 @@ async def root():
 
 以上から、Formに関する部分を修正する必要がある。
 
-改変対象はは以下の部分になると考えられる。
+改変対象は以下の部分になると考えられる。
 
-[改変元](https://github.com/fastapi/fastapi/blob/master/fastapi/params.py)
+[改変元はこちら](https://github.com/fastapi/fastapi/blob/master/fastapi/params.py)
 
 ```
 class Form(Body):
@@ -210,6 +210,9 @@ class File(Form):
             **extra,
         )
 ```
+以下は改変後の内容である.
+[ファイル全体]
+
 ## クイックスタート
 
 Dockerイメージは以下のようにしてpullしてrunする.
@@ -251,5 +254,9 @@ python -m uvicorn Check_Form:app
 ![image](https://github.com/user-attachments/assets/0150b697-4864-4d68-8cf5-6cedaeaba506)
 
 ## 制限と展望
+現状では以下が原因でバグの修正には至っていない
+* 改変する必要がある(と思われる)部分がよくわかっていない
+* プログラミングだけではなくAPIなど様々なことを理解していることが必要
 
+時間に余裕があれば、今回取り上げたバグ以外のバグの修正を行いよりよいFastAPIを作成したい
 
