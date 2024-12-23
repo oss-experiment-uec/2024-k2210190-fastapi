@@ -16,6 +16,8 @@
 
 ![image](https://github.com/user-attachments/assets/4a67f3d6-1fce-4cae-ab81-30537f7e97f3)
 
+また、File()を含む場合でも同様のエラーを出力した.
+
 なお、Formなしだと正常に動作する模様.
 
 例えば、下記のプログラム(main.pyとする)を評価手順の手法の通りに実行すると、
