@@ -39,8 +39,7 @@ async def root():
 
 ![image](https://github.com/user-attachments/assets/7d84bb28-ab41-4997-b5d9-3b7981d3a020)
 
-[こちら](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
-のページを確認すると正常に動作していると考えられる。
+上記の画面には422エラーが表示されていないため,正常に動作していると考えられる。
 
 以上から、Form()やFile()に関する部分を修正する必要がある。
 
