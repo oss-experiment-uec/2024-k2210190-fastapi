@@ -213,7 +213,8 @@ class File(Form):
         )
 ```
 以下は改変後の内容である.
-[ファイル全体](https://github.com/oss-experiment-uec/2024-k2210190-fastapi/blob/artifact-evaluation/fastapi/params.py)
+
+[ファイル全体はこちら](https://github.com/oss-experiment-uec/2024-k2210190-fastapi/blob/artifact-evaluation/fastapi/params.py)
 ```
 class Form(Body):
     def __init__(
