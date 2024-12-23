@@ -388,11 +388,10 @@ class File(Form):
 ```
 ## クイックスタート
 
-Dockerイメージは以下のようにしてpullしてrunする.
+Dockerイメージは以下のようにしてpullする.
 
 ```
 docker pull mitsukikawaguchi/2024-k2210190-fastapi
-docker run -it --rm --name console mitsukikawaguchi/2024-k2210190-fastapi
 ```
 
 ## 評価手順
