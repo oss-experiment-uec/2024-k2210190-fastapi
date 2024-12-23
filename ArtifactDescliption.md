@@ -7,7 +7,7 @@
 
 今回修正しようとしたバグは以下の内容になる.
 * [現状のfastapiではmultipart/form-dataをうまく扱えていない](https://github.com/fastapi/fastapi/issues/10999).
-* multipart/form-dataは複数の種類のデータを一度に扱える形式で、主な利用シーンはHTMLフォーム。特にファイルアップロードでよく利用される。
+  + multipart/form-dataは複数の種類のデータを一度に扱える形式で、主な利用シーンはHTMLフォーム。特にファイルアップロードでよく利用される。
   + [詳細はここ](https://developer.mozilla.org/ja/docs/Web/HTTP/MIME_types)
 
 以下、問題点を具体的に説明.
