@@ -37,7 +37,7 @@ async def root():
 
 次のような画面が出力される。
 
-![image](https://github.com/user-attachments/assets/41df2a3b-cd0d-455d-94d5-0c8922bcda1f)
+![image](https://github.com/user-attachments/assets/7d84bb28-ab41-4997-b5d9-3b7981d3a020)
 
 [こちら](https://fastapi.tiangolo.com/ja/tutorial/first-steps/)
 のページを確認すると正常に動作していると考えられる。
