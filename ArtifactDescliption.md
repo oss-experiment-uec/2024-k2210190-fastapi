@@ -1,6 +1,6 @@
 # Artifact Descliption
 
-## 概要:{FastAPIのバグ修正}
+## 概要:FastAPIのバグ修正
 * FastAPIとはPython3.6以降でAPIを構築するためのWebフレームワーク.
   + [詳細](https://fastapi.tiangolo.com/ja/)
   + [元リポジトリはこちら](https://github.com/fastapi/fastapi)
