@@ -220,18 +220,19 @@ class File(Form):
 
 ## クイックスタート
 
-Dockerイメージは以下のようにしてpullする.
+Dockerイメージは以下のようにしてダウンロードする.
 
 ```
 docker pull mitsukikawaguchi/2024-k2210190-fastapi
 ```
 
-もし上記の手順で動作しなかった場合は、次のコマンドでfastapiをimportできるようにすること.
+ダウンロードしたのちに、次のコマンドでfastapiをimportできるようにすること.
 
 ```
 pip install "fastapi[all]"
 ```
 
+後はローカル環境で評価手順に沿って実行する。
 ## 評価手順
 例えば、以下のコードがあるとき、(ファイル名をCheck_Form.pyとする)
 
