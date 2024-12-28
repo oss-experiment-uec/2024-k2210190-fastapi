@@ -17,6 +17,7 @@
 ![image](https://github.com/user-attachments/assets/4a67f3d6-1fce-4cae-ab81-30537f7e97f3)
 ![image](https://github.com/user-attachments/assets/f2c4c7fb-9b15-4488-aa3a-86853863c6f1)
 
+422 Unprocessable Entity 応答状態コードは、サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったことを表す。
 
 また、File()を含む場合でも同様のエラーを出力した.
 
